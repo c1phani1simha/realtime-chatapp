@@ -12,3 +12,16 @@ body{
 	background-position: center;
   background-attachment: fixed;
 }
+
+
+/*dark mode looking scrollbar*/
+
+ html {scrollbar-color: auto !important;}
+::-webkit-scrollbar {width: 8px !important; height: 0px !important;}
+::-webkit-scrollbar-track { cursor:pointer !important;
+  background:#555 !important;  }
+::-webkit-scrollbar-track:hover { border-radius:5px !important;
+  background: #121212 !important;}
+::-webkit-scrollbar-thumb:hover {   background:#242424 !important;}
+
+
