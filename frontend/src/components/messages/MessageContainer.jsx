@@ -1,13 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Messages from './Messages'
 import MessageInput from './MessageInput'
 import { TiMessages} from 'react-icons/ti'
+import useConversation from '../../zustand/useConversation'
 
 export const MessageContainer = () => {
-  const noChatSelected = false;
+  const { selectedConversation, setSelectedConversation } = useConversation();
+
+  //we will be writing this code to unmount/un mark the current conversation state, whenever the user log out from the site the store of the conversations state needs to be get resetted
+
+  useEffect(() => {
+    return () => {
+      setSelectedConversation(null);
+      // Reset the conversation state when user logs out
+    }
+  },[setSelectedConversation]);
+  
   return (
     <div className="md:min-w-[450px] flex flex-col">
-      {noChatSelected ? (
+      {!selectedConversation ? (
         <NoChatSelected />
       ) : (
         <>
@@ -15,7 +26,7 @@ export const MessageContainer = () => {
           <div className="bg-slate-500 px-4 py-2 mb-2">
             <span className="label-text">To:</span>{" "}
             <span className="text-gray-900 font-bold">
-              Chakka Phani
+                { selectedConversation.fullName}
             </span>
           </div>
           <Messages />
