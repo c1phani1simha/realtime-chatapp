@@ -2,13 +2,13 @@ import { Link } from "react-router-dom";
 import GenderCheckbox from "./GenderCheckbox";
 import { useState } from "react";
 import useSignup from "../../hooks/useSignup";
-import { toast} from 'react-hot-toast'
+
 const SignUp = () => {
   const [inputs, setInputs] = useState({
     fullName: "",
-    userName: "",
+    username: "",
     password: "",
-    confirmedPassword: "",
+    confirmPassword: "",
     gender: "",
   });
 
@@ -20,34 +20,6 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Basic validation
-    let hasError = false;
-    if (!inputs.fullName) {
-      toast.error("Please enter your full name");
-      hasError = true;
-    }
-    if (!inputs.userName) {
-      toast.error("Please enter a username");
-      hasError = true;
-    }
-    if (!inputs.password || inputs.password.length < 6) {
-      toast.error("Password must be at least 6 characters");
-      hasError = true;
-    }
-    if (!inputs.confirmedPassword || inputs.confirmedPassword !== inputs.password) {
-      toast.error("Passwords do not match");
-      hasError = true;
-    }
-    if (!inputs.gender) {
-      toast.error("Please select your gender");
-      hasError = true;
-    }
-
-    if (hasError) {
-      return; // Prevent sending request if validation fails
-    }
-    console.log(inputs);
     await signup(inputs);
   };
 
@@ -65,8 +37,8 @@ const SignUp = () => {
             </label>
             <input
               type="text"
-              placeholder="Phani"
-              className="w-full placeholder-opacity-75 md:placeholder-opacity-50 placeholder-gray-50 input input-bordered  h-10"
+              placeholder="John Doe"
+              className="w-full input input-bordered  h-10"
               value={inputs.fullName}
               onChange={(e) =>
                 setInputs({ ...inputs, fullName: e.target.value })
@@ -80,11 +52,11 @@ const SignUp = () => {
             </label>
             <input
               type="text"
-              placeholder="phani"
-              className="w-full placeholder-opacity-75 md:placeholder-opacity-50 placeholder-gray-50 input input-bordered h-10"
-              value={inputs.userName}
+              placeholder="johndoe"
+              className="w-full input input-bordered h-10"
+              value={inputs.username}
               onChange={(e) =>
-                setInputs({ ...inputs, userName: e.target.value })
+                setInputs({ ...inputs, username: e.target.value })
               }
             />
           </div>
@@ -96,7 +68,7 @@ const SignUp = () => {
             <input
               type="password"
               placeholder="Enter Password"
-              className="w-full placeholder-opacity-75 md:placeholder-opacity-50 placeholder-gray-50 input input-bordered h-10"
+              className="w-full input input-bordered h-10"
               value={inputs.password}
               onChange={(e) =>
                 setInputs({ ...inputs, password: e.target.value })
@@ -111,10 +83,10 @@ const SignUp = () => {
             <input
               type="password"
               placeholder="Confirm Password"
-              className="w-full input input-bordered h-10 placeholder-opacity-75 md:placeholder-opacity-50 placeholder-gray-50"
-              value={inputs.confirmedPassword}
+              className="w-full input input-bordered h-10"
+              value={inputs.confirmPassword}
               onChange={(e) =>
-                setInputs({ ...inputs, confirmedPassword: e.target.value })
+                setInputs({ ...inputs, confirmPassword: e.target.value })
               }
             />
           </div>
@@ -133,7 +105,6 @@ const SignUp = () => {
           </Link>
 
           <div>
-            {/* //when we click upon the button of signup, the loading will make the button to get disabled and the content of the button will be showing the spinner inside it. */}
             <button
               className="btn btn-block btn-sm mt-2 border border-slate-700"
               disabled={loading}

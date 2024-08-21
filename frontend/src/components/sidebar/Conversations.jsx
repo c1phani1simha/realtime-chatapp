@@ -4,7 +4,6 @@ import Conversation from "./Conversation";
 
 const Conversations = () => {
   const { loading, conversations } = useGetConversations();
-  console.log(conversations);
   return (
     <div className="py-2 flex flex-col overflow-auto">
       {conversations.map((conversation, idx) => (
@@ -24,22 +23,19 @@ const Conversations = () => {
 };
 export default Conversations;
 
-//starter code for the conversations component of the sidebar
-
-// import React from 'react'
-// import Conversation from './Conversation'
+// STARTER CODE SNIPPET
+// import Conversation from "./Conversation";
 
 // const Conversations = () => {
-//   return (
-//     <div className="py-2 flex flex-col overflow-auto">
-//       <Conversation />
-//       <Conversation />
-//       <Conversation />
-//       <Conversation />
-//       <Conversation />
-//       <Conversation />
-//     </div>
-//   );
-// }
-
-// export default Conversations
+// 	return (
+// 		<div className='py-2 flex flex-col overflow-auto'>
+// 			<Conversation />
+// 			<Conversation />
+// 			<Conversation />
+// 			<Conversation />
+// 			<Conversation />
+// 			<Conversation />
+// 		</div>
+// 	);
+// };
+// export default Conversations;
