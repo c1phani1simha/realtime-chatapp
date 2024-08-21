@@ -15,7 +15,7 @@ const useLogin = () => {
      
     });
     if (!success) {
-      // console.log("not succeeded in login");
+      console.log("not succeeded in login");
       return;
     }
     setLoading(true);
@@ -32,6 +32,7 @@ const useLogin = () => {
       if (data.error) {
         throw new Error(data.error);
       }
+      console.log(data);
       // console.log(data);
       localStorage.setItem('chat-app-user-info',JSON.stringify(data));
       setAuthUser(data);
@@ -60,11 +61,6 @@ const handleInputErrors = async ({
     return false;
   }
 
-  if (password !== confirmedPassword) {
-    toast.error("Passwords do not match");
-    console.log({ fullName, userName, password, confirmedPassword, gender });
-    return false;
-  }
 
   if (password.length < 6) {
     toast.error("Password need to be at least 6 characters");

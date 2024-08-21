@@ -66,13 +66,17 @@ export const login = async (req, res) => {
     }
 
     generateTokenSetCookie(user._id, res);
-
+    console.log("i am in auth controller login", user._id);
+    if (user._id === undefined)
+      return res.status(500).json({message:"Invalid User ID"});
     res.status(200).json({
       _id: user._id,
       fullName: user.fullName,
       userName: user.userName,
       profilePicture: user.profilePicture,
-     });
+    });
+    
+    
    
   } catch (err) {
     console.log("error in auth.controllers.login function", err);
