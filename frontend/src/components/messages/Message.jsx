@@ -5,10 +5,11 @@ import { extractTime } from '../../utils/extractTime';
 const Message = ({ message }) => {
   const { authUser } = useAuthContext();
   // console.log(authUser);
+  const shakeClass = message.shouldShake ? 'shake' : '';
   const { selectedConversation } = useConversation();
   // console.log(selectedConversation);
   // console.log("this is sender id", message.senderId);
-  console.log("this is authUser id", authUser._id);
+  console.log("this is authUser id", authUser?.id ?? 'N/A');
   var fromMe = message.senderId === authUser._id;
  
   
@@ -26,7 +27,8 @@ const Message = ({ message }) => {
           />
         </div>
       </div>
-      <div className={`chat-bubble text-white bg-blue-500 ${bubbleBgColor}`}>
+      <div className={`chat-bubble text-white bg-blue-500 ${bubbleBgColor} ${shakeClass
+        }`}>
         { message.message}
       </div>
       <div className="chat-footer opacity-50 text-xs flex gap-1 items-center ">

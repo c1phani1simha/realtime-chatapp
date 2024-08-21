@@ -32,7 +32,7 @@ const useLogin = () => {
       if (data.error) {
         throw new Error(data.error);
       }
-      console.log(data);
+      // console.log(data);
       // console.log(data);
       localStorage.setItem('chat-app-user-info',JSON.stringify(data));
       setAuthUser(data);

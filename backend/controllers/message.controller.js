@@ -1,5 +1,6 @@
 import Conversation from "../models/conversation.model.js";
 import Message from "../models/message.model.js";
+import { getReceiverSocketId } from "../socket/socket.js";
 
 export const sendMessage = async (req, res) => {
   try {
@@ -37,6 +38,12 @@ export const sendMessage = async (req, res) => {
     //we will add also socket.io
     // await conversation.save();
     // await newMessage.save();
+
+    const receiverSocketId = getReceiverSocketId();
+    if (receiverSocketId) {
+      //sending the event only to a particular socket user id
+      io.to(receiverSocketId).emit("newMessage", newMessage);
+    }
 
 
     res.status(201).json(newMessage);
